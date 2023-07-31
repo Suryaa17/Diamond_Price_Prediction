@@ -8,9 +8,7 @@ from dataclasses import dataclass
 
 from src.components.data_transformation import DataTransformation
 
-
 ## Intitialize the Data Ingetion Configuration
-
 @dataclass
 class DataIngestionconfig:
     train_data_path:str=os.path.join('artifacts','train.csv')
@@ -43,13 +41,7 @@ class DataIngestion:
                 self.ingestion_config.test_data_path
             )
   
-            
         except Exception as e:
             logging.info('Exception occured at Data Ingestion stage')
             raise CustomException(e,sys)
         
-if __name__ == "__main__":
-    obj = DataIngestion()
-    train_data_path,test_data_path = obj.initiate_data_ingestion()
-    data_transformation = DataTransformation()
-    train_arr,test_arr,_ = data_transformation.initaite_data_transformation(train_data_path,test_data_path)
